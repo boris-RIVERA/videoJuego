@@ -23,7 +23,7 @@ namespace WebApplication2.Controllers
             //[HttpPost(Name = "CrearEstudiante")]
             [HttpPost]
             [Route("usuario")]
-            public async Task<IActionResult> Post([FromBody] Usuario usuario)
+            public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
             {
                 _aplicacionContexto.Usuario.Add(usuario);
                 _aplicacionContexto.SaveChangesAsync();
@@ -34,8 +34,8 @@ namespace WebApplication2.Controllers
             // [HttpGet(Name = "GetEstudiante")]
 
             [HttpGet]
-            [Route("MostrarEstudiante")]
-            public async Task<IActionResult> Get()
+            [Route("")]
+            public async Task<IActionResult> GetUsuario()
             {
                 List<Usuario> listUsuario = _aplicacionContexto.Usuario.ToList();
 
@@ -45,7 +45,7 @@ namespace WebApplication2.Controllers
             //[HttpPut(Name = "PutEstudiante")]
             [HttpPut]
             [Route("EditarEstudiante/")]
-            public async Task<IActionResult> Edit([FromBody] Usuario Usuario)
+            public async Task<IActionResult> EditUsuario([FromBody] Usuario Usuario)
             {
                 _aplicacionContexto.Usuario.Update(Usuario);
                 _aplicacionContexto.SaveChangesAsync();
@@ -57,7 +57,7 @@ namespace WebApplication2.Controllers
             [HttpDelete]
             [Route("EliminarEstudiante/")]
             //[HttpDelete(Name = "DeleteEstudiante")]
-            public async Task<IActionResult> Delete(int? id)
+            public async Task<IActionResult> DeleteUsuario(int? id)
             {
                 Usuario usuario = _aplicacionContexto.Usuario.Find(id);
                 _aplicacionContexto.Usuario.Remove( usuario);
