@@ -11,7 +11,7 @@ namespace WebApplication2.Context
 
         public DbSet<Usuario> Usuario{ get; set; }
         public DbSet<Email> Email { get; set; }
-        public DbSet<VideoJuego> VideoJuego { get; set; }
+        public DbSet<VideoJuegos> VideoJuegos { get; set; }
 
 
     }

@@ -8,13 +8,13 @@ namespace WebApplication2.Controllers
    
         [ApiController]
         [Route("[controller]")]
-        public class UsuarioController : ControllerBase
+        public class EmailController : ControllerBase
         {
            
-            private readonly ILogger<UsuarioController> _logger;
+            private readonly ILogger<EmailController> _logger;
             private readonly AplicacionContexto _aplicacionContexto;
-            public UsuarioController(
-                ILogger<UsuarioController> logger,
+            public EmailController(
+                ILogger<EmailController> logger,
                 AplicacionContexto aplicacionContexto)
             {
                 _logger = logger;
@@ -22,12 +22,12 @@ namespace WebApplication2.Controllers
             }
             //[HttpPost(Name = "CrearEstudiante")]
             [HttpPost]
-            [Route("usuario")]
-            public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
+            [Route("Email")]
+            public async Task<IActionResult> PostEmail([FromBody] Email email)
             {
-                _aplicacionContexto.Usuario.Add(usuario);
+                _aplicacionContexto.Email.Add(  email);
                 _aplicacionContexto.SaveChanges();
-                return Ok(usuario);
+                return Ok(email);
             }
 
 
@@ -35,19 +35,19 @@ namespace WebApplication2.Controllers
 
             [HttpGet]
             [Route("")]
-            public async Task<IActionResult> GetUsuario()
+            public async Task<IActionResult> GetEmail()
             {
-                List<Usuario> listUsuario = _aplicacionContexto.Usuario.ToList();
+                List<Email> listEmail = _aplicacionContexto.Email.ToList();
 
-                return StatusCode(StatusCodes.Status200OK, listUsuario);
+                return StatusCode(StatusCodes.Status200OK, listEmail);
             }
 
             //[HttpPut(Name = "PutEstudiante")]
             [HttpPut]
             [Route("EditarEstudiante/")]
-            public async Task<IActionResult> EditUsuario([FromBody] Usuario Usuario)
+            public async Task<IActionResult> EditEmail([FromBody] Email Email)
             {
-                _aplicacionContexto.Usuario.Update(Usuario);
+                _aplicacionContexto.Email.Update(Email);
                 _aplicacionContexto.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, "editado");
 
@@ -57,10 +57,10 @@ namespace WebApplication2.Controllers
             [HttpDelete]
             [Route("EliminarEstudiante/")]
             //[HttpDelete(Name = "DeleteEstudiante")]
-            public async Task<IActionResult> DeleteUsuario(int? id)
+            public async Task<IActionResult> DeleteEmail(int? id)
             {
-                Usuario usuario = _aplicacionContexto.Usuario.Find(id);
-                _aplicacionContexto.Usuario.Remove( usuario);
+                Email Email = _aplicacionContexto.Email.Find(id);
+                _aplicacionContexto.Email.Remove( Email);
                 _aplicacionContexto.SaveChanges();
                 return StatusCode(StatusCodes.Status200OK, "eliminado");
             }
