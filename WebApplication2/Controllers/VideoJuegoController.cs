@@ -8,13 +8,13 @@ namespace WebApplication2.Controllers
    
         [ApiController]
         [Route("[controller]")]
-        public class UsuarioController : ControllerBase
+        public class VideoJuegoController : ControllerBase
         {
            
-            private readonly ILogger<UsuarioController> _logger;
+            private readonly ILogger<VideoJuegoController> _logger;
             private readonly AplicacionContexto _aplicacionContexto;
-            public UsuarioController(
-                ILogger<UsuarioController> logger,
+            public VideoJuegoController(
+                ILogger<VideoJuegoController> logger,
                 AplicacionContexto aplicacionContexto)
             {
                 _logger = logger;
@@ -22,12 +22,12 @@ namespace WebApplication2.Controllers
             }
             //[HttpPost(Name = "CrearEstudiante")]
             [HttpPost]
-            [Route("usuario")]
-            public async Task<IActionResult> PostUsuario([FromBody] Usuario usuario)
+            [Route("VideoJuego")]
+            public async Task<IActionResult> PostVideoJuego([FromBody] VideoJuegos VideoJuegos)
             {
-                _aplicacionContexto.Usuario.Add(usuario);
+                _aplicacionContexto.VideoJuegos.Add(VideoJuegos);
                 _aplicacionContexto.SaveChanges();
-                return Ok(usuario);
+                return Ok(VideoJuegos);
             }
 
 
@@ -35,19 +35,19 @@ namespace WebApplication2.Controllers
 
             [HttpGet]
             [Route("")]
-            public async Task<IActionResult> GetUsuario()
+            public async Task<IActionResult> GetVideoJuego()
             {
-                List<Usuario> listUsuario = _aplicacionContexto.Usuario.ToList();
+                List<VideoJuegos> listVideoJuego = _aplicacionContexto.VideoJuegos.ToList();
 
-                return StatusCode(StatusCodes.Status200OK, listUsuario);
+                return StatusCode(StatusCodes.Status200OK, listVideoJuego);
             }
 
             //[HttpPut(Name = "PutEstudiante")]
             [HttpPut]
-            [Route("EditarEstudiante/")]
-            public async Task<IActionResult> EditUsuario([FromBody] Usuario Usuario)
+            [Route("EditarVideoJuego/")]
+            public async Task<IActionResult> EditVideoJuego([FromBody] VideoJuegos VideoJuegos)
             {
-                _aplicacionContexto.Usuario.Update(Usuario);
+                _aplicacionContexto.VideoJuegos.Update(VideoJuegos);
                 _aplicacionContexto.SaveChangesAsync();
                 return StatusCode(StatusCodes.Status200OK, "editado");
 
@@ -55,12 +55,12 @@ namespace WebApplication2.Controllers
             }
 
             [HttpDelete]
-            [Route("EliminarEstudiante/")]
+            [Route("EliminarVideoJuego/")]
             //[HttpDelete(Name = "DeleteEstudiante")]
-            public async Task<IActionResult> DeleteUsuario(int? id)
+            public async Task<IActionResult> DeleteVideoJuego(int? id)
             {
-                Usuario usuario = _aplicacionContexto.Usuario.Find(id);
-                _aplicacionContexto.Usuario.Remove( usuario);
+                VideoJuegos VideoJuegos = _aplicacionContexto.VideoJuegos.Find(id);
+                _aplicacionContexto.VideoJuegos.Remove( VideoJuegos);
                 _aplicacionContexto.SaveChanges();
                 return StatusCode(StatusCodes.Status200OK, "eliminado");
             }

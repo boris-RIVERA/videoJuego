@@ -11,6 +11,6 @@ namespace WebApplication2.Models
 
         [ForeignKey("email")]
         public int idusuario { get; set; }
-        public Usuario usuario { get; set; }
+        
     }
 }
